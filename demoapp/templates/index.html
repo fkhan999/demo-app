@@ -226,35 +226,22 @@
 
         <div class="carousel-wrapper">
             <div class="carousel" id="carousel">
+                {% for b in bookings %}
                 <div class="card">
                     <div class="row">
                         <div>
                             <div class="title">Recent Booking</div>
-                            <div class="subtitle">25-Nov-2025</div>
+                            <div class="subtitle">{{ b.booking_date }}</div>
                         </div>
-                        <div class="status">BOOKED</div>
+                       <div class="status">BOOKED</div>
                     </div>
 
                     <div class="divider"></div>
 
-                    <div class="title">Cubicle: NOSTP 02 16 A 058</div>
-                    <div class="subtitle">Noida, NOIDA-STP, BHUT01, FLOOR-16, A Wing</div>
+                    <div class="title">Cubicle: {{ b.cubicle_code }}</div>
+                    <div class="subtitle">{{ b.location }}</div>
                 </div>
-
-                <div class="card">
-                    <div class="row">
-                        <div>
-                            <div class="title">Recent Booking</div>
-                            <div class="subtitle">26-Nov-2025</div>
-                        </div>
-                        <div class="status">BOOKED</div>
-                    </div>
-
-                    <div class="divider"></div>
-
-                    <div class="title">Cubicle: NOSTP 02 16 A 010</div>
-                    <div class="subtitle">Noida, NOIDA-STP, BHUT01, FLOOR-16, A Wing</div>
-                </div>
+                {% endfor %}
                 <div class="dots" id="dots"></div>
             </div>
 
