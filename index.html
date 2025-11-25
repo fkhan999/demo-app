@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Seat</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: #f5f5f5;
+        }
+
+        .appbar {
+            background: #9C27B0;
+            color: white;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            cursor: pointer;
+        }
+
+        .material-icons {
+            font-size: 24px;
+            line-height: 24px;
+        }
+
+        .appbar .title {
+            flex: 1;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(5px);
+            /* VISUAL CENTER FIX */
+        }
+
+
+        .container {
+            padding: 16px;
+        }
+
+        .banner {
+            background: #E3F2FD;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .banner b {
+            font-size: 14px;
+        }
+
+        .banner p {
+            margin: 4px 0 0;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .link {
+            color: #1E88E5;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status {
+            background: white;
+            color: #4CAF50;
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid #4CAF50;
+            /* ✅ green border */
+        }
+
+
+
+        .divider {
+            height: 0px;
+            background: #eee;
+            margin: 12px 0;
+        }
+
+        .title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+        }
+
+
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 12px;
+            scroll-behavior: smooth;
+            padding-bottom: 0;
+            /* IMPORTANT */
+        }
+
+
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            padding-bottom: 32px;
+            /* space for dots INSIDE card */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            flex: 0 0 90%;
+            scroll-snap-align: center;
+            position: relative;
+        }
+
+
+
+        .dots {
+            position: absolute;
+            bottom: 1px;
+            /* INSIDE bottom area */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            pointer-events: none;
+        }
+
+
+
+        .dot {
+            height: 5px;
+            width: 5px;
+            margin: 0 2px;
+            background: #ccc;
+            display: inline-block;
+            border-radius: 50%;
+        }
+
+        .dot.active {
+            background: #9C27B0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="appbar">
+        <span class="icon back">
+            <span class="material-icons">arrow_back</span>
+        </span>
+
+        <span class="title">BOOK SEAT</span>
+
+        <span class="icon menu">
+            <span class="material-icons">more_vert</span>
+        </span>
+    </div>
+
+    <div class="container">
+
+        <div class="banner">
+            <b>Time Slot based seat booking is now live!</b>
+            <p>
+                <a href="#" class="link">Click Here</a>
+                to choose cities/DCs where time slot-based seat booking is enabled.
+            </p>
+        </div>
+
+        <!-- <div class="card">
+            <div class="row">
+                <div>
+                    <div class="title">Recent Booking</div>
+                    <div class="subtitle">25-Nov-2025</div>
+                </div>
+                <div class="status">BOOKED</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="title">Cubicle: NOSTP 02 16 A 058</div>
+            <div class="subtitle">Noida, NOIDA-STP, BHUT01, FLOOR-16, A Wing</div>
+        </div> -->
+
+        <div class="carousel-wrapper">
+            <div class="carousel" id="carousel">
+                <div class="card">
+                    <div class="row">
+                        <div>
+                            <div class="title">Recent Booking</div>
+                            <div class="subtitle">25-Nov-2025</div>
+                        </div>
+                        <div class="status">BOOKED</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="title">Cubicle: NOSTP 02 16 A 058</div>
+                    <div class="subtitle">Noida, NOIDA-STP, BHUT01, FLOOR-16, A Wing</div>
+                </div>
+
+                <div class="card">
+                    <div class="row">
+                        <div>
+                            <div class="title">Recent Booking</div>
+                            <div class="subtitle">26-Nov-2025</div>
+                        </div>
+                        <div class="status">BOOKED</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="title">Cubicle: NOSTP 02 16 A 010</div>
+                    <div class="subtitle">Noida, NOIDA-STP, BHUT01, FLOOR-16, A Wing</div>
+                </div>
+                <div class="dots" id="dots"></div>
+            </div>
+
+
+
+</body>
+
+<script>
+    const carousel = document.getElementById("carousel");
+    const cards = carousel.querySelectorAll(".card");
+
+    const dotsContainer = document.getElementById("dots");
+
+    // create dots
+    for (let i = 0; i < cards.length; i++) {
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+        if (i === 0) dot.classList.add("active");
+        dotsContainer.appendChild(dot);
+    }
+
+    const dots = dotsContainer.children;
+
+    // update dots on scroll
+    carousel.addEventListener("scroll", () => {
+        const index = Math.round(carousel.scrollLeft / (carousel.offsetWidth * 0.9));
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].classList.toggle("active", i === index);
+        }
+    });
+</script>
+
+
+</html>
