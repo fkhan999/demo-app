@@ -1,7 +1,11 @@
 from django.test import TestCase
 
 # Create your tests here.
-from demoapp.models import Booking
+from demoapp.models import Booking,BookingSlot
+
+
+booking_slots = BookingSlot.objects.filter(enabled=True).order_by('booking_date')
+print(booking_slots)
 # from datetime import date
 
 # Booking.objects.create(

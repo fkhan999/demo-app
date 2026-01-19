@@ -20,6 +20,7 @@ from demoapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("slot/", views.slot),
+    path("slot/", views.slot, name="slot"),
+    path("generate/", views.generate_booking),
     path("", views.home),
 ]
