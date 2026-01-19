@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from demoapp.models import Booking
+from demoapp.models import Booking,BookingSlot
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    bookings = Booking.objects.filter(enabled=True).order_by('booking_date')
-    print(bookings)
-    return render(request, 'index.html', {'bookings': bookings})
+    return render(request, 'index.html')
+
+
+@login_required
+def slot(request):
+    booking_slots = BookingSlot.objects.all()
+    return render(request, 'slot.html', {'booking_slots': booking_slots})

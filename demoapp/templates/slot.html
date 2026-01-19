@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Booking UI</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            min-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            /* 3D separation */
+            background-color: #fff;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header h1 {
+            font-size: 1.1rem;
+            flex-grow: 1;
+            margin-left: 15px;
+            color: #333;
+        }
+
+        .seat-number {
+            font-weight: bold;
+            font-size: 0.8rem;
+            /* Reduced from 0.9rem */
+            display: block;
+            margin-bottom: 8px;
+            /* Added margin */
+        }
+
+        /* Info Banner */
+        .banner {
+            background-color: #e8f0fe;
+            margin: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #444;
+        }
+
+        .banner a {
+            color: #AB47BC;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .content {
+            padding: 0 15px;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        /* Horizontal Scrolling for Cards */
+        .card-scroll-container {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding: 10px 4px 20px 4px;
+            /* Added padding for shadow visibility */
+            scroll-snap-type: x mandatory;
+            /* Better scroll feel */
+
+            /* Hide scrollbar */
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+        }
+
+        .card-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Booking Card */
+        .booking-card {
+            min-width: 260px;
+            border: none;
+            /* Remove border for cleaner 3D look */
+            border-radius: 20px;
+            padding: 15px;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            /* 3D Shadow effect */
+            scroll-snap-align: start;
+            transition: transform 0.2s;
+        }
+
+        .booking-card:active {
+            transform: scale(0.98);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .status-badge {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+
+        .card-details strong {
+            display: block;
+            font-size: 0.85rem;
+            /* Reduced from 0.95rem */
+            margin-bottom: 8px;
+        }
+
+        .card-details p {
+            font-size: 0.75rem;
+            /* Reduced from 0.85rem */
+            color: #666;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .time {
+            font-weight: 600;
+            color: #333 !important;
+            margin-top: 8px;
+        }
+
+        .cancel-btn {
+            margin-top: 10px;
+            background: none;
+            border: none;
+            color: #AB47BC;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 0 !important;
+                background-color: white !important;
+            }
+
+            .mobile-container {
+                max-width: none !important;
+                width: 100% !important;
+                min-height: 100vh !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mobile-container">
+        <header class="header">
+            <span class="icon back">
+                <span class="material-icons">arrow_back</span>
+            </span>
+            <h1>Book Seat for Time Slots</h1>
+            <span class="icon menu">
+                <span class="material-icons">more_vert</span>
+            </span>
+        </header>
+
+        <div class="banner">
+            <p><a href="#">Click Here</a> to view the cities/DCs where only full-day seat booking is enabled.</p>
+        </div>
+
+        <main class="content">
+            <h2 class="section-title">Booking Updates</h2>
+
+            <div class="card-scroll-container">
+                {% for booking_slot in booking_slots %}
+                <div class="booking-card">
+                    <div class="card-header">
+                        <span class="date">{{ booking_slot.booking_date|date:"d-M-Y" }}</span>
+                        <span class="status-badge">Booked</span>
+                    </div>
+                    <div class="card-details">
+                        <span class="seat-number">{{ booking_slot.cubicle_code }}</span>
+                        <p>{{ booking_slot.location }}</p>
+                        <p class="time">{{ booking_slot.slot_start }} - {{ booking_slot.slot_end }}</p>
+                    </div>
+                    <button class="cancel-btn">Cancel</button>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
