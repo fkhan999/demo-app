@@ -9,5 +9,5 @@ def home(request):
 
 @login_required
 def slot(request):
-    booking_slots = BookingSlot.objects.all()
+    booking_slots = BookingSlot.objects.filter(enabled=True)
     return render(request, 'slot.html', {'booking_slots': booking_slots})
