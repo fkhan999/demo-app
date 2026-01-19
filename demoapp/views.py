@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
-from datetime import date
-from demoapp.models import Booking,BookingSlot
+from django.shortcuts import render, redirect
+from datetime import date, datetime, timedelta, timezone
+from demoapp.models import Booking, BookingSlot
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -16,7 +16,8 @@ def slot(request):
 
 @login_required
 def generate_booking(request):
-    today = date.today()
+    ist = timezone(timedelta(hours=5, minutes=30))
+    today = datetime.now(ist).date()
     
     # Check if a slot exists for today
     if not BookingSlot.objects.filter(booking_date=today).exists():
